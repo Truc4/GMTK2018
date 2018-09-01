@@ -35,9 +35,6 @@ func _ready():
 	reset()
 
 func _physics_process(delta):
-	#Get Resolution
-	res = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
-
 	#Debug
 	#print($PlayerSprite.get_modulate())
 
@@ -83,21 +80,6 @@ func _physics_process(delta):
 	if is_on_ceiling() and vel.y < 0:
 		vel.y = 0
 
-	#Get mouse position relative to player
-	if Input.is_action_pressed("ui_left"):
-		vel.x += -SPEED
-
-	#Gravity
-	vel.y += GRAVITY
-
-	#Move
-	move_and_slide(vel, Vector2(0, -1))
-
-	if is_on_floor():
-		#Stop sideways velocity
-		vel.y = 0
-		vel.x *= .8
-
 	#Get mouse position relative to center of screen
 	mouse_pos = Vector2(get_viewport().get_mouse_position().x - (res.x/2), get_viewport().get_mouse_position().y - (res.y/2))
 
@@ -142,7 +124,9 @@ func shoot():
 	bullet.set_position(get_position())
 	bullet.angle = angle
 	bullet.angle_vector = Vector2(angle_vector.x, -angle_vector.y)
-	get_parent().add_child(bullet)
+	for node in get_parent().get_children():
+		if node.get_class() == 'TileMap':
+			node.add_child(bullet)
 
 func _on_Reload_timeout():
 	#Flash white
@@ -165,5 +149,3 @@ func damage():
 		if health.value <= 0:
 			die()
 		$InvincibilityFrames.start()
-		vel.x += -angle_vector.x * KICKBACK
-		vel.y += angle_vector.y * KICKBACK
