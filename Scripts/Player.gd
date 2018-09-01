@@ -35,9 +35,6 @@ func _ready():
 	reset()
 
 func _physics_process(delta):
-	#Get Resolution
-	res = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
-
 	#Debug
 	#print($PlayerSprite.get_modulate())
 
