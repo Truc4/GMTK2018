@@ -30,6 +30,8 @@ var color = Color(1,1,1,1)
 var bullet_angle
 var bullet_angle_vector
 
+var player_viewport_pos = Vector2()
+
 func _ready():
 	health.value = MAX_HEALTH
 	reset()
@@ -37,6 +39,7 @@ func _ready():
 func _physics_process(delta):
 	#Debug
 	#print($PlayerSprite.get_modulate())
+	#print(get_viewport_rect())
 
 	#Death plane
 	if get_position().y > 2000:
@@ -80,8 +83,11 @@ func _physics_process(delta):
 	if is_on_ceiling() and vel.y < 0:
 		vel.y = 0
 
-	#Get mouse position relative to center of screen
-	mouse_pos = Vector2(get_viewport().get_mouse_position().x - (res.x/2), get_viewport().get_mouse_position().y - (res.y/2))
+	#Get mouse position relative player         V V those numbers have to be equal to exactly the witdth and height of the camera (Not the viewport width and height but the world width and height)
+	player_viewport_pos.x = (get_position().x / 784) * (res.x/2)
+	player_viewport_pos.y = (get_position().y / 448) * (res.y/2)
+	#print(player_viewport_pos, ", ", get_position())
+	mouse_pos = Vector2(get_viewport().get_mouse_position().x - (res.x/2) - player_viewport_pos.x, get_viewport().get_mouse_position().y - (res.y/2) - player_viewport_pos.y)
 
 	#RotateGun
 	angle = atan2(mouse_pos.x, -mouse_pos.y)*(180/PI)
