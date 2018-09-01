@@ -7,14 +7,15 @@
 custom_solver_bias = 0.0
 extents = Vector2( 16, 16 )
 
-[node name="TileMap" type="Node2D"]
+[node name="TileSetDamage" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="." index="0"]
 
+modulate = Color( 1, 0, 0, 1 )
 texture = ExtResource( 1 )
-centered = false
+_sections_unfolded = [ "Visibility" ]
 
-[node name="Wall" type="StaticBody2D" parent="Sprite" index="0"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Sprite" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -23,11 +24,9 @@ constant_linear_velocity = Vector2( 0, 0 )
 constant_angular_velocity = 0.0
 friction = 1.0
 bounce = 0.0
-_sections_unfolded = [ "Collision" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/Wall" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite/StaticBody2D" index="0"]
 
-position = Vector2( 16, 16 )
 shape = SubResource( 1 )
 
 

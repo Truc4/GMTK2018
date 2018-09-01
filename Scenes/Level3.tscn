@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://TileSet.tres" type="TileSet" id=1]
+[ext_resource path="res://TileSetDamage.tres" type="TileSet" id=2]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Goal.tscn" type="PackedScene" id=4]
+
+[node name="Level3" type="TileMap"]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( -458755, 0, 0, -458754, 0, 0, -458753, 0, 0, -393213, 0, 0, -262131, 0, 0, -196601, 0, 0, -131055, 0, 0, -131054, 0, 0, 65532, 0, 0, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 131068, 0, 0, 196604, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Spikes" type="TileMap" parent="." index="0"]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 32, 32 )
+cell_quadrant_size = 16
+cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+cell_half_offset = 2
+cell_tile_origin = 0
+cell_y_sort = false
+cell_clip_uv = false
+collision_use_kinematic = false
+collision_friction = 1.0
+collision_bounce = 0.0
+collision_layer = 1
+collision_mask = 1
+occluder_light_mask = 1
+format = 1
+tile_data = PoolIntArray( 65533, 0, 0, 131069, 0, 0, 196605, 0, 0 )
+_sections_unfolded = [ "Cell" ]
+
+[node name="Enemy" parent="." index="1" instance=ExtResource( 3 )]
+
+position = Vector2( 100, 70 )
+
+[node name="Enemy2" parent="." index="2" instance=ExtResource( 3 )]
+
+position = Vector2( 110, -210 )
+
+[node name="Enemy3" parent="." index="3" instance=ExtResource( 3 )]
+
+position = Vector2( 430, -150 )
+
+[node name="Enemy4" parent="." index="4" instance=ExtResource( 3 )]
+
+position = Vector2( 240, -120 )
+
+[node name="Goal" parent="." index="5" instance=ExtResource( 4 )]
+
+position = Vector2( -50, -280 )
+
+
