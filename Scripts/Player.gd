@@ -63,33 +63,6 @@ func _physics_process(delta):
 		else:
 			vel.x += -SPEED*.1
 	
-<<<<<<< HEAD
-=======
-	#Gravity
-	vel.y += GRAVITY
-	
-	#Move
-	move_and_slide(vel, Vector2(0, -1))
-	
-	#On floor
-	if is_on_floor():
-		vel.y = 0
-		if $Reload.is_stopped() or $Reload.time_left < .8:
-			vel.x *= GROUND_FRICTION
-	else:
-		vel.x *= AIR_FRICTION
-	#On wall
-	if is_on_wall():
-		vel.x += (abs(vel.x) / vel.x) * WALL_FRICTION
-	#On ceiling
-	if is_on_ceiling() and vel.y < 0:
-		vel.y = 0
-
-	#Get mouse position relative to player
-	if Input.is_action_pressed("ui_left"):
-		vel.x += -SPEED
-
->>>>>>> 1d3f535bff2c25a7f75e3d8841e0756917b35ee8
 	#Gravity
 	vel.y += GRAVITY
 	
@@ -154,13 +127,9 @@ func shoot():
 	bullet.set_position(get_position())
 	bullet.angle = angle
 	bullet.angle_vector = Vector2(angle_vector.x, -angle_vector.y)
-<<<<<<< HEAD
 	for node in get_parent().get_children():
 		if node.get_class() == 'TileMap':
 			node.add_child(bullet)
-=======
-	get_parent().add_child(bullet)
->>>>>>> 1d3f535bff2c25a7f75e3d8841e0756917b35ee8
 
 func _on_Reload_timeout():
 	#Flash white
@@ -182,10 +151,4 @@ func damage():
 		health.set_visible(true)
 		if health.value <= 0:
 			die()
-<<<<<<< HEAD
 		$InvincibilityFrames.start()
-=======
-		$InvincibilityFrames.start()
-		vel.x += -angle_vector.x * KICKBACK
-		vel.y += angle_vector.y * KICKBACK
->>>>>>> 1d3f535bff2c25a7f75e3d8841e0756917b35ee8
