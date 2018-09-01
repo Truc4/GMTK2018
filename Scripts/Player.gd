@@ -23,7 +23,6 @@ var angle_vector = Vector2()
 
 #Project Resolution
 var res
-<<<<<<< HEAD
 
 #To flash colors
 var color = Color(1,1,1,1)
@@ -34,15 +33,12 @@ var bullet_angle_vector
 func _ready():
 	health.value = MAX_HEALTH
 	reset()
-=======
->>>>>>> b3a990c6c82a826b6de8348ec24628ede1087e64
 
 func _physics_process(delta):
 	#Get Resolution
 	res = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
 
 	#Debug
-<<<<<<< HEAD
 	#print($PlayerSprite.get_modulate())
 
 	#Death plane
@@ -51,9 +47,6 @@ func _physics_process(delta):
 
 	#Resolution
 	res = get_viewport_rect().size
-=======
-	
->>>>>>> b3a990c6c82a826b6de8348ec24628ede1087e64
 
 	#Movement
 
@@ -64,7 +57,6 @@ func _physics_process(delta):
 		else:
 			vel.x += SPEED*.1
 	#Move left
-<<<<<<< HEAD
 	if Input.is_action_pressed("ui_left") and vel.x > -SPEED*2:
 		if is_on_floor():
 			vel.x += -SPEED
@@ -91,24 +83,7 @@ func _physics_process(delta):
 	if is_on_ceiling() and vel.y < 0:
 		vel.y = 0
 
-	#Get mouse position relative to player
-=======
-	if Input.is_action_pressed("ui_left"):
-		vel.x += -SPEED
-
-	#Gravity
-	vel.y += GRAVITY
-
-	#Move
-	move_and_slide(vel, Vector2(0, -1))
-
-	if is_on_floor():
-		#Stop sideways velocity
-		vel.y = 0
-		vel.x *= .8
-
 	#Get mouse position relative to center of screen
->>>>>>> b3a990c6c82a826b6de8348ec24628ede1087e64
 	mouse_pos = Vector2(get_viewport().get_mouse_position().x - (res.x/2), get_viewport().get_mouse_position().y - (res.y/2))
 
 	#RotateGun
@@ -142,7 +117,6 @@ func _input(event):
 	"""if event.get_class() != 'InputEventMouseMotion':
 		print(event.get_class())"""
 	if event.is_action_pressed("ui_shoot"):
-<<<<<<< HEAD
 		if $Reload.is_stopped():
 			$Reload.start()
 			shoot()
@@ -176,7 +150,3 @@ func damage():
 		if health.value <= 0:
 			die()
 		$InvincibilityFrames.start()
-=======
-		vel.x += -angle_vector.x * KICKBACK
-		vel.y += angle_vector.y * KICKBACK
->>>>>>> b3a990c6c82a826b6de8348ec24628ede1087e64
